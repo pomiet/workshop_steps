@@ -1,4 +1,4 @@
-defmodule TableServerFive do
+defmodule TableServerSix do
   use GenServer
 
   # ----------------------------------------- #
@@ -6,7 +6,7 @@ defmodule TableServerFive do
   # i.e. Client calls the following functions #
   # ----------------------------------------- #
   def start_link(start_number, server_name) do
-    GenServer.start_link(__MODULE__, start_number, name: {:global, {:servername, server_name}})
+    GenServer.start_link(__MODULE__, start_number, name: global_server_name(server_name))
   end
 
   def init(start_number) do
@@ -14,15 +14,15 @@ defmodule TableServerFive do
   end
 
   def stop(server_name) do
-    GenServer.stop({:global, {:servername, server_name}})
+    GenServer.stop(global_server_name(server_name))
   end
 
   def ping(server_name) do
-    GenServer.call({:global, {:servername, server_name}}, :ping)
+    try_call(server_name, :ping)
   end
 
   def pong(server_name) do
-    GenServer.call({:global, {:servername, server_name}}, :pong)
+    try_call(server_name, :pong)
   end
 
   # ----------------------------------------- #
@@ -35,6 +35,19 @@ defmodule TableServerFive do
 
   def handle_call(:pong, _from, current_number) do
     {:reply, {:ok, current_number}, current_number+1}
+  end
+
+  defp global_server_name(server_name) do
+    {:global, {:servername, server_name}}
+  end
+
+  defp try_call(server_name, message) do
+    case GenServer.whereis(global_server_name(server_name)) do
+      nil ->
+        {:error, :invalid_server}
+      servername ->
+        GenServer.call(servername, message)
+    end
   end
 
 end
