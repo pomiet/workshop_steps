@@ -10,9 +10,19 @@ defmodule TableSupervisorFiveTest do
   end
 
   test "supervisor restarts after exit", %{server: server_pid} do
-    assert {:ok, 0} == GenServer.call(TableServerFive, :ping)
-    assert {:ok, 1} == GenServer.call(TableServerFive, :pong)
-    assert {:ok, 2} == TableServerFive.ping()
-    assert {:ok, 3} == TableServerFive.pong()
+    assert {:ok, 0} == TableServerFive.ping("021M")
+    assert {:ok, 1} == TableServerFive.pong("021M")
+    assert {:ok, 2} == TableServerFive.ping("021M")
+    assert {:ok, 3} == TableServerFive.pong("021M")
+
+    assert {:ok, 1000000} == TableServerFive.ping("122M")
+    assert {:ok, 1000001} == TableServerFive.pong("122M")
+    assert {:ok, 1000002} == TableServerFive.ping("122M")
+    assert {:ok, 1000003} == TableServerFive.pong("122M")
+
+    assert {:ok, 2000000} == TableServerFive.ping("223M")
+    assert {:ok, 2000001} == TableServerFive.pong("223M")
+    assert {:ok, 2000002} == TableServerFive.ping("223M")
+    assert {:ok, 2000003} == TableServerFive.pong("223M")
   end
 end
