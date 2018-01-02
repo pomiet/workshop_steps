@@ -2,7 +2,7 @@ defmodule TableProcessThree do
   def ping do
     receive do
       {from, :ping} ->
-        IO.puts 'ping process reached, going to respond with :pong'
+        IO.puts 'received ping, send pong'
         send from, {self(), :pong}
     end
     ping
