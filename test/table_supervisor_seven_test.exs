@@ -3,9 +3,6 @@ defmodule TableSupervisorSevenTest do
 
   setup do
     {:ok, server_pid} = TableSupervisorSeven.start_link([])
-    :sys.statistics(server_pid, true)
-    :sys.trace(server_pid, true)
-
     {:ok, server: server_pid}
   end
 
@@ -21,9 +18,6 @@ defmodule TableSupervisorSevenTest do
 
     assert {:ok, 1000000} == TableServerSeven.ping("7122M")
     assert {:ok, 1000001} == TableServerSeven.pong("7122M")
-
-    assert {:ok, 2000000} == TableServerSeven.ping("7223M")
-    assert {:ok, 2000001} == TableServerSeven.pong("7223M")
   end
 
   test "supervisor does not have requested GenServer", %{server: server_pid} do

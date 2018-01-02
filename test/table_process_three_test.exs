@@ -1,8 +1,8 @@
-defmodule TableServerZeroTest do
+defmodule TableProcessThreeTest do
   use ExUnit.Case
 
-  test "receive pong from ping" do
-    {ping_pid, pong_pid} = TableServerZero.start()
+  test "receive pong from ping, and ping from pong" do
+    {ping_pid, pong_pid} = TableProcessThree.start()
 
     send(ping_pid, {self(), :ping})
     assert_receive({ping_spid, :pong}, 1500)

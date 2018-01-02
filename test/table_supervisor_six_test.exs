@@ -18,12 +18,6 @@ defmodule TableSupervisorSixTest do
 
     assert {:ok, 0} == TableServerSix.ping("6021M")
     assert {:ok, 1} == TableServerSix.pong("6021M")
-
-    assert {:ok, 1000000} == TableServerSix.ping("6122M")
-    assert {:ok, 1000001} == TableServerSix.pong("6122M")
-
-    assert {:ok, 2000000} == TableServerSix.ping("6223M")
-    assert {:ok, 2000001} == TableServerSix.pong("6223M")
   end
 
   test "supervisor does not have requested GenServer", %{server: server_pid} do

@@ -1,10 +1,9 @@
-defmodule Table do
+defmodule TableProcessThree do
   def ping do
     receive do
-      {from_pid, :ping} ->
-        IO.puts('received ping, send pong')
-        :timer.sleep(1000)
-        send from_pid, {self(), :pong}
+      {from, :ping} ->
+        IO.puts 'ping process reached, going to respond with :pong'
+        send from, {self(), :pong}
     end
     ping
   end
@@ -12,7 +11,7 @@ defmodule Table do
   def pong do
     receive do
       {from_pid, :pong} ->
-        IO.puts('received pong, send ping')
+        IO.puts 'received pong, send ping'
         :timer.sleep(1000)
         send from_pid, {self(), :ping}
     end
