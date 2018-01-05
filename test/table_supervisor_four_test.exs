@@ -9,7 +9,7 @@ defmodule TableSupervisorFourTest do
     {:ok, server: server_pid}
   end
 
-  test "supervisor knows about GenServer", %{server: server_pid} do
+  test "supervisor knows about GenServer" do
     assert {:ok, 0} == GenServer.call(TableServerFour, :ping)
     assert {:ok, 1} == GenServer.call(TableServerFour, :pong)
     assert {:ok, 2} == TableServerFour.ping()

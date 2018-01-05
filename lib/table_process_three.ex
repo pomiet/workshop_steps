@@ -12,7 +12,6 @@ defmodule TableProcessThree do
     receive do
       {from_pid, :pong} ->
         IO.puts 'received pong, send ping'
-        :timer.sleep(1000)
         send from_pid, {self(), :ping}
     end
     pong

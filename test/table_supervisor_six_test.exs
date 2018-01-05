@@ -9,7 +9,7 @@ defmodule TableSupervisorSixTest do
     {:ok, server: server_pid}
   end
 
-  test "supervisor restarts GenServer after it dies", %{server: server_pid} do
+  test "supervisor restarts GenServer after it dies" do
     assert {:ok, 0} == TableServerSix.ping("6021M")
     assert {:ok, 1} == TableServerSix.pong("6021M")
 
@@ -20,7 +20,7 @@ defmodule TableSupervisorSixTest do
     assert {:ok, 1} == TableServerSix.pong("6021M")
   end
 
-  test "supervisor does not have requested GenServer", %{server: server_pid} do
+  test "supervisor does not have requested GenServer" do
     assert {:error, :invalid_server} == TableServerSix.ping("INVALID_TEST")
   end
 end

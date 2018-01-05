@@ -9,7 +9,7 @@ defmodule TableSupervisorFiveTest do
     {:ok, server: server_pid}
   end
 
-  test "supervisor restarts GenServer after it dies", %{server: server_pid} do
+  test "supervisor restarts GenServer after it dies" do
     assert {:ok, 0} == TableServerFive.ping("021M")
     assert {:ok, 1} == TableServerFive.pong("021M")
 
