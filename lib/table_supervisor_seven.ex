@@ -8,9 +8,9 @@ defmodule TableSupervisorSeven do
 
   def init(_arg) do
     children = [
-      worker(TableServerSeven, [[0, 999999], "7021M"], [id: "7021M"]),
-      worker(TableServerSeven, [[1000000, 1999999], "7122M"], [id: "7122M"]),
-      worker(TableServerSeven, [[2000000, 2999999], "7223M"], [id: "7223M"]),
+
+      # Add start and end values to GenServer start
+
     ]
     opts = [strategy: :one_for_one, name: TableServerSeven.Supervisor]
 
