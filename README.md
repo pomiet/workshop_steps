@@ -1,19 +1,15 @@
-# Table
+# Concurrency Workshop
 
-**TODO: Add description**
+This repository coincides with an Introduction to Concurrency with Elixir
+workshop.
 
-## Installation
+1) Install Elixir: http://elixir-lang.github.io/install.html
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `table` to your list of dependencies in `mix.exs`:
+2) Git - A working version of git (https://git-scm.com/downloads)
 
-```elixir
-def deps do
-  [{:table, "~> 0.1.0"}]
-end
-```
+There is also a video for installing Elixir: https://www.youtube.com/watch?v=antnsMgA4Ro
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/table](https://hexdocs.pm/table).
-
+We do not introduce the Elixir language itself, so some familiarity with the
+language itself is expected. If you are new to Elixir, working through the first
+nine sections of this tutorial should help you gain enough working knowledge:
+http://elixir-lang.github.io/getting-started/introduction.html
