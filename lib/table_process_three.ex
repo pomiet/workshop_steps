@@ -5,7 +5,7 @@ defmodule TableProcessThree do
         IO.puts 'received ping, send pong'
         send from, {self(), :pong}
     end
-    ping
+    ping()
   end
 
   def pong do
@@ -14,7 +14,7 @@ defmodule TableProcessThree do
         IO.puts 'received pong, send ping'
         send from_pid, {self(), :ping}
     end
-    pong
+    pong()
   end
 
   def start do

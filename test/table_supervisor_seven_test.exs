@@ -19,7 +19,4 @@ defmodule TableSupervisorSevenTest do
     assert {:ok, 1000001} == TableServerSeven.pong("7122M")
   end
 
-  test "supervisor does not have requested GenServer" do
-    assert {:error, :invalid_server} == TableServerSeven.ping("INVALID_TEST")
-  end
 end
