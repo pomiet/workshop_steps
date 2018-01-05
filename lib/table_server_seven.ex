@@ -5,18 +5,12 @@ defmodule TableServerSeven do
   # Client - API                              #
   # i.e. Client calls the following functions #
   # ----------------------------------------- #
-  def start_link(start_number, server_name) do
-
-    # update initial state with start and end numbers
-
-    GenServer.start_link(__MODULE__, start_number, name: global_server_name(server_name))
+  def start_link([start_number, end_number], server_name) do
+    GenServer.start_link(__MODULE__, [start_number, end_number], name: global_server_name(server_name))
   end
 
-  def init(start_number) do
-
-    # update initial state with start and end numbers
-
-    {:ok, start_number}
+  def init([start_number, end_number]) do
+    {:ok, [start_number, end_number]}
   end
 
   def stop(server_name) do
@@ -35,31 +29,23 @@ defmodule TableServerSeven do
   # Server - API                              #
   # i.e. Server calls the following functions #
   # ----------------------------------------- #
-
-
-  # update handle_call with 'when' guard clause to continue incrementing
-  def handle_call(:ping, _from, current_number) do
-
-    # update to handle start and end numbers
-
-    {:reply, {:ok, current_number}, current_number+1}
+  def handle_call(:ping, _from, [current_number, end_number])
+    when current_number == end_number do
+      {:reply, {:ok, current_number}, [current_number, end_number]}
   end
 
-
-  # ** add **   handle_call with 'when' guard clause to stop incrementing
-
-
-  # update handle_call with 'when' guard clause to continue incrementing
-  def handle_call(:pong, _from, current_number) do
-
-    # update to handle start and end numbers
-
-    {:reply, {:ok, current_number}, current_number+1}
+  def handle_call(:pong, _from, [current_number, end_number])
+    when current_number == end_number do
+      {:reply, {:ok, current_number}, [current_number, end_number]}
   end
 
+  def handle_call(:ping, _from, [current_number, end_number]) do
+    {:reply, {:ok, current_number}, [current_number+1, end_number]}
+  end
 
-  # ** add **   handle_call with 'when' guard clause to stop incrementing
-
+  def handle_call(:pong, _from, [current_number, end_number]) do
+    {:reply, {:ok, current_number}, [current_number+1, end_number]}
+  end
 
   defp global_server_name(server_name) do
     {:global, {:servername, server_name}}
