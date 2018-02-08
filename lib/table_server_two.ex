@@ -9,6 +9,10 @@ defmodule TableServerTwo do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
+  def init(args) do
+    {:ok, args}
+  end
+
   def ping() do
     GenServer.call(__MODULE__, :ping)
   end
