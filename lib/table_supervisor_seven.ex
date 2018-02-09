@@ -8,12 +8,21 @@ defmodule TableSupervisorSeven do
 
   def init(_arg) do
     children = [
-      worker(TableServerSeven, [[0, 999999], "7021M"], [id: "7021M"]),
-      worker(TableServerSeven, [[1000000, 1999999], "7122M"], [id: "7122M"]),
-      worker(TableServerSeven, [[2000000, 2999999], "7223M"], [id: "7223M"]),
+      %{
+         id: "7021M",
+         start: {TableServerSeven, :start_link, [[0, 999999], "7021M"]}
+       },
+      %{
+         id: "7122M",
+         start: {TableServerSeven, :start_link, [[1000000, 1999999], "7122M"]}
+       },
+      %{
+         id: "7223M",
+         start: {TableServerSeven, :start_link, [[2000000, 2999999], "7223M"]}
+       }
     ]
-    opts = [strategy: :one_for_one, name: TableServerSeven.Supervisor]
 
-    supervise(children, opts)
+    # Now we start the supervisor with the children and a strategy
+    Supervisor.init(children, strategy: :one_for_one)
   end
 end

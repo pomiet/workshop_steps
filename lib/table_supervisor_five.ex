@@ -8,19 +8,49 @@ defmodule TableSupervisorFive do
 
   def init(_arg) do
     children = [
-      worker(TableServerFive, [0, "021M"], [id: "021M"]),
-      worker(TableServerFive, [1000000, "122M"], [id: "122M"]),
-      worker(TableServerFive, [2000000, "223M"], [id: "223M"]),
-      worker(TableServerFive, [3000000, "324M"], [id: "324M"]),
-      worker(TableServerFive, [4000000, "425M"], [id: "425M"]),
-      worker(TableServerFive, [5000000, "526M"], [id: "526M"]),
-      worker(TableServerFive, [6000000, "627M"], [id: "627M"]),
-      worker(TableServerFive, [7000000, "728M"], [id: "728M"]),
-      worker(TableServerFive, [8000000, "829M"], [id: "829M"]),
-      worker(TableServerFive, [9000000, "921B"], [id: "921B"])
+      %{
+         id: "5021M",
+         start: {TableServerFive, :start_link, [0, "5021M"]}
+       },
+      %{
+         id: "5122M",
+         start: {TableServerFive, :start_link, [1000000, "5122M"]}
+       },
+      %{
+         id: "5223M",
+         start: {TableServerFive, :start_link, [2000000, "5223M"]}
+       },
+      %{
+         id: "5324M",
+         start: {TableServerFive, :start_link, [3000000, "5324M"]}
+       },
+      %{
+         id: "5425M",
+         start: {TableServerFive, :start_link, [4000000, "5425M"]}
+       },
+      %{
+         id: "5526M",
+         start: {TableServerFive, :start_link, [5000000, "5526M"]}
+       },
+      %{
+         id: "5627M",
+         start: {TableServerFive, :start_link, [6000000, "5627M"]}
+       },
+      %{
+         id: "5728M",
+         start: {TableServerFive, :start_link, [7000000, "5728M"]}
+       },
+      %{
+         id: "5829M",
+         start: {TableServerFive, :start_link, [8000000, "5829M"]}
+       },
+      %{
+         id: "5921B",
+         start: {TableServerFive, :start_link, [9000000, "5921B"]}
+       }
     ]
-    opts = [strategy: :one_for_one, name: TableServerFive.Supervisor]
 
-    supervise(children, opts)
+    # Now we start the supervisor with the children and a strategy
+    Supervisor.init(children, strategy: :one_for_one)
   end
 end

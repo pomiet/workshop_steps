@@ -8,10 +8,10 @@ defmodule TableSupervisorFour do
 
   def init(_arg) do
     children = [
-      worker(TableServerFour, [0])
+      {TableServerFour, 0}
     ]
-    opts = [strategy: :one_for_one, name: TableServerFour.Supervisor]
 
-    supervise(children, opts)
+    # Now we start the supervisor with the children and a strategy
+    Supervisor.init(children, strategy: :one_for_one)
   end
 end

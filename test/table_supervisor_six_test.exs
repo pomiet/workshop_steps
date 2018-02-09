@@ -1,7 +1,7 @@
 defmodule TableSupervisorSixTest do
   use ExUnit.Case, async: true
 
-  setup do
+  setup_all do
     {:ok, server_pid} = TableSupervisorSix.start_link([])
     :sys.statistics(server_pid, true)
     :sys.trace(server_pid, true)
