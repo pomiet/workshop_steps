@@ -15,10 +15,6 @@ defmodule TableSupervisorSeven do
       %{
          id: "7122M",
          start: {TableServerSeven, :start_link, [[1000000, 1999999], "7122M"]}
-       },
-      %{
-         id: "7223M",
-         start: {TableServerSeven, :start_link, [[2000000, 2999999], "7223M"]}
        }
     ]
 

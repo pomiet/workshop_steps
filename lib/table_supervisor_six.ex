@@ -11,14 +11,6 @@ defmodule TableSupervisorSix do
       %{
          id: "6021M",
          start: {TableServerSix, :start_link, [0, "6021M"]}
-       },
-      %{
-         id: "6122M",
-         start: {TableServerSix, :start_link, [1000000, "6122M"]}
-       },
-      %{
-         id: "6223M",
-         start: {TableServerSix, :start_link, [2000000, "6223M"]}
        }
     ]
 
