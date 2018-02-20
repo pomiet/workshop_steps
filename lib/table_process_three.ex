@@ -3,7 +3,7 @@ defmodule TableProcessThree do
     receive do
       {from, :ping} ->
         IO.puts 'received ping, send pong'
-        send from, {self(), :pong}
+        send(from, {self(), :pong})
     end
     ping()
   end
@@ -12,7 +12,7 @@ defmodule TableProcessThree do
     receive do
       {from_pid, :pong} ->
         IO.puts 'received pong, send ping'
-        send from_pid, {self(), :ping}
+        send(from_pid, {self(), :ping})
     end
     pong()
   end

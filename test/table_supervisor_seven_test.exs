@@ -9,6 +9,7 @@ defmodule TableSupervisorSevenTest do
   test "supervisor restarts GenServer after it dies" do
     assert {:ok, 0} == TableServerSeven.ping("7021M")
     assert {:ok, 1} == TableServerSeven.pong("7021M")
+    
     assert {:ok, 1000000} == TableServerSeven.ping("7122M")
 
     TableServerSeven.stop("7021M")

@@ -2,7 +2,7 @@ defmodule TableProcessTwoTest do
   use ExUnit.Case
 
   test "send a ping, process lives" do
-    pid = TableProcessTwo.start
+    pid = TableProcessTwo.start()
 
     assert true == Process.alive?(pid)
 
