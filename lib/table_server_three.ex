@@ -32,5 +32,4 @@ defmodule TableServerThree do
   def handle_call(:pong, _from, current_number) do
     {:reply, {:ok, current_number}, current_number}
   end
-
 end

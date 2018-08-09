@@ -6,7 +6,11 @@ defmodule TableServerSeven do
   # i.e. Client calls the following functions #
   # ----------------------------------------- #
   def start_link([start_number, end_number], server_name) do
-    GenServer.start_link(__MODULE__, [start_number, end_number], name: global_server_name(server_name))
+    GenServer.start_link(
+      __MODULE__,
+      [start_number, end_number],
+      name: global_server_name(server_name)
+    )
   end
 
   def init([start_number, end_number]) do
@@ -30,21 +34,21 @@ defmodule TableServerSeven do
   # i.e. Server calls the following functions #
   # ----------------------------------------- #
   def handle_call(:ping, _from, [current_number, end_number])
-    when current_number == end_number do
-      {:reply, {:ok, current_number}, [current_number, end_number]}
+      when current_number == end_number do
+    {:reply, {:ok, current_number}, [current_number, end_number]}
   end
 
   def handle_call(:pong, _from, [current_number, end_number])
-    when current_number == end_number do
-      {:reply, {:ok, current_number}, [current_number, end_number]}
+      when current_number == end_number do
+    {:reply, {:ok, current_number}, [current_number, end_number]}
   end
 
   def handle_call(:ping, _from, [current_number, end_number]) do
-    {:reply, {:ok, current_number}, [current_number+1, end_number]}
+    {:reply, {:ok, current_number}, [current_number + 1, end_number]}
   end
 
   def handle_call(:pong, _from, [current_number, end_number]) do
-    {:reply, {:ok, current_number}, [current_number+1, end_number]}
+    {:reply, {:ok, current_number}, [current_number + 1, end_number]}
   end
 
   defp global_server_name(server_name) do
@@ -55,9 +59,9 @@ defmodule TableServerSeven do
     case GenServer.whereis(global_server_name(server_name)) do
       nil ->
         {:error, :invalid_server}
+
       servername ->
         GenServer.call(servername, message)
     end
   end
-
 end

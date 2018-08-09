@@ -7,17 +7,16 @@ defmodule TableSupervisorSevenTest do
   end
 
   test "supervisor restarts GenServer after it dies" do
-    assert {:ok, 0} == TableServerSeven.ping("7021M")
-    assert {:ok, 1} == TableServerSeven.pong("7021M")
-    
-    assert {:ok, 1000000} == TableServerSeven.ping("7122M")
+    assert {:ok, 0} == TableServerSeven.ping(:seven021M)
+    assert {:ok, 1} == TableServerSeven.pong(:seven021M)
 
-    TableServerSeven.stop("7021M")
-    :timer.sleep 1000
+    assert {:ok, 1_000_000} == TableServerSeven.ping(:seven122M)
 
-    assert {:ok, 0} == TableServerSeven.ping("7021M")
-    assert {:ok, 1} == TableServerSeven.pong("7021M")
-    assert {:ok, 1000001} == TableServerSeven.pong("7122M")
+    TableServerSeven.stop(:seven021M)
+    :timer.sleep(1000)
+
+    assert {:ok, 0} == TableServerSeven.ping(:seven021M)
+    assert {:ok, 1} == TableServerSeven.pong(:seven021M)
+    assert {:ok, 1_000_001} == TableServerSeven.pong(:seven122M)
   end
-
 end

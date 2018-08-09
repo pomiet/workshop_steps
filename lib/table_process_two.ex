@@ -1,8 +1,9 @@
 defmodule TableProcessTwo do
   def ping do
     receive do
-      :ping -> IO.puts('received ping')
+      :ping -> IO.puts("received ping")
     end
+
     ping()
   end
 

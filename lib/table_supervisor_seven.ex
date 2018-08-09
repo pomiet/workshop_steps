@@ -9,13 +9,13 @@ defmodule TableSupervisorSeven do
   def init(_arg) do
     children = [
       %{
-         id: "7021M",
-         start: {TableServerSeven, :start_link, [[0, 999999], "7021M"]}
-       },
+        id: :seven021M,
+        start: {TableServerSeven, :start_link, [[0, 999_999], :seven021M]}
+      },
       %{
-         id: "7122M",
-         start: {TableServerSeven, :start_link, [[1000000, 1999999], "7122M"]}
-       }
+        id: :seven122M,
+        start: {TableServerSeven, :start_link, [[1_000_000, 1_999_999], :seven122M]}
+      }
     ]
 
     # Now we start the supervisor with the children and a strategy

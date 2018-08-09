@@ -13,6 +13,7 @@ defmodule TableServerSevenTest do
     assert {:ok, 10} == TableServerSeven.ping("021M")
     assert {:ok, 11} == TableServerSeven.pong("021M")
     assert {:ok, 12} == TableServerSeven.ping("021M")
-    assert {:ok, 12} == TableServerSeven.pong("021M") # Note doesn't exceed max
+    # Note doesn't exceed max
+    assert {:ok, 12} == TableServerSeven.pong("021M")
   end
 end

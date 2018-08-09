@@ -10,13 +10,13 @@ defmodule TableSupervisorFiveTest do
   end
 
   test "supervisor restarts GenServer after it dies" do
-    assert {:ok, 0} == TableServerFive.ping("5021M")
-    assert {:ok, 1} == TableServerFive.pong("5021M")
+    assert {:ok, 0} == TableServerFive.ping(:five021M)
+    assert {:ok, 1} == TableServerFive.pong(:five021M)
 
-    TableServerFive.stop("5021M")
-    :timer.sleep 1000
+    TableServerFive.stop(:five021M)
+    :timer.sleep(1000)
 
-    assert {:ok, 0} == TableServerFive.ping("5021M")
-    assert {:ok, 1} == TableServerFive.pong("5021M")
+    assert {:ok, 0} == TableServerFive.ping(:five021M)
+    assert {:ok, 1} == TableServerFive.pong(:five021M)
   end
 end

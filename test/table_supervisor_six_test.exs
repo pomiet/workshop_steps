@@ -10,14 +10,14 @@ defmodule TableSupervisorSixTest do
   end
 
   test "supervisor restarts GenServer after it dies" do
-    assert {:ok, 0} == TableServerSix.ping("6021M")
-    assert {:ok, 1} == TableServerSix.pong("6021M")
+    assert {:ok, 0} == TableServerSix.ping(:six021M)
+    assert {:ok, 1} == TableServerSix.pong(:six021M)
 
-    TableServerSix.stop("6021M")
-    :timer.sleep 1000
+    TableServerSix.stop(:six021M)
+    :timer.sleep(1000)
 
-    assert {:ok, 0} == TableServerSix.ping("6021M")
-    assert {:ok, 1} == TableServerSix.pong("6021M")
+    assert {:ok, 0} == TableServerSix.ping(:six021M)
+    assert {:ok, 1} == TableServerSix.pong(:six021M)
   end
 
   test "supervisor does not have requested GenServer" do

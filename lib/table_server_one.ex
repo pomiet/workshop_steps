@@ -4,7 +4,7 @@ defmodule TableServerOne do
   def init(args) do
     {:ok, args}
   end
-  
+
   def handle_call(:ping, _from, []) do
     {:reply, {:ok}, []}
   end

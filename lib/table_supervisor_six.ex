@@ -9,9 +9,9 @@ defmodule TableSupervisorSix do
   def init(_arg) do
     children = [
       %{
-         id: "6021M",
-         start: {TableServerSix, :start_link, [0, "6021M"]}
-       }
+        id: :six021M,
+        start: {TableServerSix, :start_link, [0, :six021M]}
+      }
     ]
 
     # Now we start the supervisor with the children and a strategy

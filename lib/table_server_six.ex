@@ -30,11 +30,11 @@ defmodule TableServerSix do
   # i.e. Server calls the following functions #
   # ----------------------------------------- #
   def handle_call(:ping, _from, current_number) do
-    {:reply, {:ok, current_number}, current_number+1}
+    {:reply, {:ok, current_number}, current_number + 1}
   end
 
   def handle_call(:pong, _from, current_number) do
-    {:reply, {:ok, current_number}, current_number+1}
+    {:reply, {:ok, current_number}, current_number + 1}
   end
 
   defp global_server_name(server_name) do
@@ -45,9 +45,9 @@ defmodule TableServerSix do
     case GenServer.whereis(global_server_name(server_name)) do
       nil ->
         {:error, :invalid_server}
+
       servername ->
         GenServer.call(servername, message)
     end
   end
-
 end

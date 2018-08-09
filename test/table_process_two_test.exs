@@ -7,7 +7,7 @@ defmodule TableProcessTwoTest do
     assert true == Process.alive?(pid)
 
     send(pid, :ping)
-    :timer.sleep 1000
+    :timer.sleep(1000)
     send(pid, :ping)
 
     assert true == Process.alive?(pid)

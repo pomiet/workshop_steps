@@ -26,11 +26,10 @@ defmodule TableServerFour do
   # i.e. Server calls the following functions #
   # ----------------------------------------- #
   def handle_call(:ping, _from, current_number) do
-    {:reply, {:ok, current_number}, current_number+1}
+    {:reply, {:ok, current_number}, current_number + 1}
   end
 
   def handle_call(:pong, _from, current_number) do
-    {:reply, {:ok, current_number}, current_number+1}
+    {:reply, {:ok, current_number}, current_number + 1}
   end
-
 end
