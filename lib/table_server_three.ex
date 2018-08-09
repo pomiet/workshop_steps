@@ -5,21 +5,19 @@ defmodule TableServerThree do
   # Client - API                              #
   # i.e. Client calls the following functions #
   # ----------------------------------------- #
-  def start_link(start_number) do
-    GenServer.start_link(__MODULE__, start_number, name: __MODULE__)
+  def start_link(_) do
+    # start link with initial value
   end
 
-  def init(start_number) do
-    {:ok, start_number}
+  def init(args) do
+    {:ok, args}
   end
 
   def ping() do
     GenServer.call(__MODULE__, :ping)
   end
 
-  def pong() do
-    GenServer.call(__MODULE__, :pong)
-  end
+  # Be sure to setup a pong()
 
   # ----------------------------------------- #
   # Server - API                              #
@@ -29,7 +27,5 @@ defmodule TableServerThree do
     {:reply, {:ok, current_number}, current_number}
   end
 
-  def handle_call(:pong, _from, current_number) do
-    {:reply, {:ok, current_number}, current_number}
-  end
+  # pong handler goes here
 end
