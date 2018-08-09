@@ -4,7 +4,7 @@ defmodule TableProcessTwo do
       :ping -> IO.puts("received ping")
     end
 
-    ping()
+    # add tail call recursion here
   end
 
   def start do
