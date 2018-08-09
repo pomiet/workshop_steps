@@ -8,10 +8,7 @@ defmodule TableSupervisorFive do
 
   def init(_arg) do
     children = [
-      %{
-        id: :five021M,
-        start: {TableServerFive, :start_link, [0, :five021M]}
-      }
+      # add children
     ]
 
     # Now we start the supervisor with the children and a strategy

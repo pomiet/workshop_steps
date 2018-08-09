@@ -5,25 +5,23 @@ defmodule TableServerFive do
   # Client - API                              #
   # i.e. Client calls the following functions #
   # ----------------------------------------- #
-  def start_link(start_number, server_name) do
-    GenServer.start_link(__MODULE__, start_number, name: {:global, {:servername, server_name}})
+  def start_link(start_number) do
+    # Call start_link with global server_name
   end
 
   def init(start_number) do
     {:ok, start_number}
   end
 
-  def stop(server_name) do
-    GenServer.stop({:global, {:servername, server_name}})
+  def ping() do
+    # Call global server_name with ping
   end
 
-  def ping(server_name) do
-    GenServer.call({:global, {:servername, server_name}}, :ping)
+  def pong() do
+    # Call global server_name with pong
   end
 
-  def pong(server_name) do
-    GenServer.call({:global, {:servername, server_name}}, :pong)
-  end
+  # Add stop function
 
   # ----------------------------------------- #
   # Server - API                              #
