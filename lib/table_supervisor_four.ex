@@ -7,11 +7,8 @@ defmodule TableSupervisorFour do
   end
 
   def init(_arg) do
-    children = [
-      {TableServerFour, 0}
-    ]
+    # Initialize children here
 
     # Now we start the supervisor with the children and a strategy
-    Supervisor.init(children, strategy: :one_for_one)
   end
 end
