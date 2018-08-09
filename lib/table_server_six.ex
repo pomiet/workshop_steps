@@ -6,7 +6,7 @@ defmodule TableServerSix do
   # i.e. Client calls the following functions #
   # ----------------------------------------- #
   def start_link(start_number, server_name) do
-    GenServer.start_link(__MODULE__, start_number, name: global_server_name(server_name))
+    # use a function to get the global server name
   end
 
   def init(start_number) do
@@ -14,15 +14,15 @@ defmodule TableServerSix do
   end
 
   def stop(server_name) do
-    GenServer.stop(global_server_name(server_name))
+    # use a function to get the global server name
   end
 
   def ping(server_name) do
-    try_call(server_name, :ping)
+    # use a function to try to call the GenServer
   end
 
   def pong(server_name) do
-    try_call(server_name, :pong)
+    # use a function to try to call the GenServer
   end
 
   # ----------------------------------------- #
@@ -42,12 +42,7 @@ defmodule TableServerSix do
   end
 
   defp try_call(server_name, message) do
-    case GenServer.whereis(global_server_name(server_name)) do
-      nil ->
-        {:error, :invalid_server}
-
-      servername ->
-        GenServer.call(servername, message)
-    end
+    # use GenServer.whereis to find the global server name
+    # if the server isn't found, return an error
   end
 end
