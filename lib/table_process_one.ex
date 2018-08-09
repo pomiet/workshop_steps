@@ -1,11 +1,9 @@
 defmodule TableProcessOne do
   def ping do
-    receive do
-      :ping -> IO.puts("received ping")
-    end
+    # insert receive(args) here
   end
 
   def start do
-    spawn(__MODULE__, :ping, [])
+    # insert spawn(fun) here
   end
 end
