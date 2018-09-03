@@ -1,13 +1,9 @@
 defmodule TableProcessTwo do
   def ping do
-    receive do
-      :ping -> IO.puts("received ping")
-    end
-
-    # add tail call recursion here
+    # insert receive here
   end
 
   def start do
-    spawn(__MODULE__, :ping, [])
+    # insert spawn here
   end
 end
