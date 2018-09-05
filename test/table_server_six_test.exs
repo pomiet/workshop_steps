@@ -2,7 +2,7 @@ defmodule TableServerSixTest do
   use ExUnit.Case
 
   setup do
-    {:ok, server_pid} = TableServerSix.start_link(10, "021M")
+    {:ok, server_pid} = TableServerSix.start_link(10, :six021M)
     :sys.statistics(server_pid, true)
     :sys.trace(server_pid, true)
 
@@ -10,9 +10,9 @@ defmodule TableServerSixTest do
   end
 
   test "call ping/pong through GenServer function " do
-    assert {:ok, 10} == TableServerSix.ping("021M")
-    assert {:ok, 11} == TableServerSix.pong("021M")
-    assert {:ok, 12} == TableServerSix.ping("021M")
-    assert {:ok, 13} == TableServerSix.pong("021M")
+    assert {:ok, 10} == TableServerSix.ping(:six021M)
+    assert {:ok, 11} == TableServerSix.pong(:six021M)
+    assert {:ok, 12} == TableServerSix.ping(:six021M)
+    assert {:ok, 13} == TableServerSix.pong(:six021M)
   end
 end
